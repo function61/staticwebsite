@@ -1,0 +1,27 @@
+{
+	"for_description_of_this_file_see": "https://github.com/function61/turbobob",
+	"version_major": 1,
+	"project_name": "staticwebsite",
+	"builders": [
+		{
+			"name": "default",
+			"dockerfile_path": "build-default.Dockerfile",
+			"mount_source": "",
+			"mount_destination": "/go/src/github.com/function61/staticwebsite",
+			"dev_command": [
+				"bash"
+			],
+			"dev_ports": [],
+			"dev_pro_tips": [],
+			"pass_envs": [],
+			"contextless_build": true
+		}
+	],
+	"docker_images": [
+		{
+			"image": "fn61/staticwebsite",
+			"dockerfile_path": "Dockerfile",
+			"auth_type": "creds_from_env"
+		}
+	]
+}
