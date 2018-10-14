@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/function61/gokit/ossignal"
 	"log"
 	"net/http"
 )
@@ -12,7 +13,17 @@ func main() {
 		Addr: ":80",
 	}
 
-	log.Printf("Starting to listen at %s", srv.Addr)
+	go func() {
+		log.Printf("Starting to listen at %s", srv.Addr)
 
-	log.Fatal(srv.ListenAndServe())
+		if err := srv.ListenAndServe(); err != nil {
+			log.Printf("ListenAndServe() error: %s", err.Error())
+		}
+	}()
+
+	log.Printf("Got %s; shutdown requested", ossignal.WaitForInterruptOrTerminate())
+
+	if err := srv.Shutdown(nil); err != nil {
+		log.Fatal(err)
+	}
 }
