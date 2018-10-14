@@ -3,6 +3,8 @@
 
 Just a simple static HTTP server container image.
 
+Uses Go to achieve tiny and modern HTTP implementation with memory safety.
+
 
 Instructions
 ------------
